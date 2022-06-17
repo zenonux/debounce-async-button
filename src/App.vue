@@ -1,5 +1,5 @@
 <template>
-  <DebounceAsyncButton :handler="test"> 防抖按钮 </DebounceAsyncButton>
+  <DebounceAsyncButton :handler="test"> test button </DebounceAsyncButton>
 </template>
 <script setup lang="ts">
 import DebounceAsyncButton from "./components/DebounceAsyncButton.vue";
