@@ -16,7 +16,7 @@ npm i @urcloud/debounce-async-button -S
   <DebounceAsyncButton :handler="test"> test button </DebounceAsyncButton>
 </template>
 <script setup lang="ts">
-  import DebounceAsyncButton from "./components/DebounceAsyncButton.vue";
+  import {DebounceAsyncButton} from "@urcloud//debounce-async-button.vue";
 
   const sleep = () => {
     return new Promise((resolve) => {
