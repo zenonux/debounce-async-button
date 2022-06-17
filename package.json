@@ -3,6 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "typings": "./dist/index.es.d.ts",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "author": "换个头像心好累",
@@ -25,6 +26,7 @@
     "@vitejs/plugin-vue": "^2.3.3",
     "typescript": "^4.5.4",
     "vite": "^2.9.9",
+    "vite-dts": "^1.0.4",
     "vue": "^3.2.25",
     "vue-tsc": "^0.34.7"
   }
