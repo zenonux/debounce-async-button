@@ -1,22 +1,14 @@
 {
-  "name": "@urcloud/debounce-async-button",
-  "publishConfig": {
-    "access": "public"
-  },
+  "name": "debounce-async-button",
+  "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "vite serve demo",
+    "dev": "vite",
     "build": "vue-tsc --noEmit && vite build"
   },
   "peerDependencies": {
     "vue": "^3.2.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zenonux/debounce-async-button"
-  },
-  "homepage": "https://github.com/zenonux/debounce-async-button#readme",
-  "license": "MIT",
   "devDependencies": {
     "vue": "^3.2.25",
     "@vitejs/plugin-vue": "^2.3.3",
