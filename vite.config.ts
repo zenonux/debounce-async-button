@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/export.ts'),
+      entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'DebounceAsyncButton',
       fileName: (format) => `index.${format}.js`
     },
