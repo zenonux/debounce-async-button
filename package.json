@@ -5,7 +5,7 @@
   },
   "version": "1.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite serve demo",
     "build": "vue-tsc --noEmit && vite build"
   },
   "peerDependencies": {
