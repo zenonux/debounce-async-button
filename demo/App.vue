@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <p>
     <DebounceAsyncButton> common button </DebounceAsyncButton>
   </p>
@@ -51,4 +51,4 @@ const testAsync = async (name = '') => {
 const testSync = (name = '') => {
   console.log('test sync ' + name)
 }
-</script>
+</script> -->
