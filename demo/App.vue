@@ -1,35 +1,30 @@
-<!-- <template>
+<template>
   <p>
     <DebounceAsyncButton> common button </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton @click="testAsync">
+    <DebounceAsyncButton @handler="testAsync">
       button with async function
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton @click="testAsync('arguments')">
+    <DebounceAsyncButton @handler="testAsync('arguments')">
       button with async function with arguments
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton @click="testSync">
+    <DebounceAsyncButton @handler="testSync">
       button with common function
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton @click="testSync('arguments')">
+    <DebounceAsyncButton @handler="testSync('arguments')">
       button with common function with arguments
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton disabled @click="testAsync">
+    <DebounceAsyncButton disabled @handler="testAsync">
       disabled button
-    </DebounceAsyncButton>
-  </p>
-  <p>
-    <DebounceAsyncButton @click.stop="testAsync('modify')">
-      click with event modify symbol button(Not support yet.)
     </DebounceAsyncButton>
   </p>
 </template>
@@ -51,4 +46,4 @@ const testAsync = async (name = '') => {
 const testSync = (name = '') => {
   console.log('test sync ' + name)
 }
-</script> -->
+</script>

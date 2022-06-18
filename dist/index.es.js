@@ -29,17 +29,19 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { defineComponent, useAttrs, ref, computed, openBlock, createElementBlock, mergeProps, unref, renderSlot } from "vue";
+import { defineComponent, useAttrs, ref, computed, openBlock, createElementBlock, mergeProps, unref, withModifiers, renderSlot } from "vue";
+const _hoisted_1 = ["onClick"];
 const __default__ = {
   inheritAttrs: false
 };
 const _sfc_main = /* @__PURE__ */ defineComponent(__spreadProps(__spreadValues({}, __default__), {
   __name: "DebounceAsyncButton",
   setup(__props) {
-    let _a = useAttrs(), { onClick } = _a, attrs = __objRest(_a, ["onClick"]);
+    let _a = useAttrs(), { onHandler } = _a, attrs = __objRest(_a, ["onHandler"]);
     const loading = ref(false);
-    const createAsyncTask = (syncTask) => {
-      return Promise.resolve(syncTask).then((syncTask2) => syncTask2());
+    const createAsyncTask = async (syncTask) => {
+      const newSyncTask = await Promise.resolve(syncTask);
+      return newSyncTask();
     };
     const isAsyncFunction = (fn) => {
       let fnStr = fn.toString();
@@ -49,20 +51,20 @@ const _sfc_main = /* @__PURE__ */ defineComponent(__spreadProps(__spreadValues({
       return !attrs.hasOwnProperty("disabled") || !attrs.disabled;
     });
     const onSubmit = async () => {
-      if (!onClick || !enabled || loading.value) {
+      if (!onHandler || !enabled || loading.value) {
         return;
       }
       loading.value = true;
-      if (!isAsyncFunction(onClick)) {
-        await createAsyncTask(onClick);
+      if (!isAsyncFunction(onHandler)) {
+        await createAsyncTask(onHandler);
       } else {
-        await onClick();
+        await onHandler();
       }
       loading.value = false;
     };
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("button", mergeProps(unref(attrs), {
-        onClick: onSubmit,
+        onClick: withModifiers(onSubmit, ["stop"]),
         class: {
           "debounce-async-button": true,
           "debounce-async-button-loading": loading.value,
@@ -70,7 +72,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent(__spreadProps(__spreadValues({
         }
       }), [
         renderSlot(_ctx.$slots, "default")
-      ], 16);
+      ], 16, _hoisted_1);
     };
   }
 }));

@@ -1,7 +1,7 @@
 <template>
   <button
     v-bind="attrs"
-    @click="onSubmit"
+    @click.stop="onSubmit"
     :class="{
       'debounce-async-button': true,
       'debounce-async-button-loading': loading,
@@ -20,11 +20,12 @@ export default {
 <script setup lang="ts" name="DebounceAsyncButton">
 import { ref, useAttrs, computed } from 'vue'
 type AsyncFunc = (...args: any) => Promise<any>
-let { onClick, ...attrs } = useAttrs()
+let { onHandler, ...attrs } = useAttrs()
 const loading = ref(false)
 
-const createAsyncTask = (syncTask: any) => {
-  return Promise.resolve(syncTask).then((syncTask2) => syncTask2())
+const createAsyncTask = async (syncTask: any) => {
+  const newSyncTask = await Promise.resolve(syncTask)
+  return newSyncTask()
 }
 
 const isAsyncFunction = (fn: any) => {
@@ -39,14 +40,14 @@ const enabled = computed(() => {
 })
 
 const onSubmit = async () => {
-  if (!onClick || !enabled || loading.value) {
+  if (!onHandler || !enabled || loading.value) {
     return
   }
   loading.value = true
-  if (!isAsyncFunction(onClick)) {
-    await createAsyncTask(onClick)
+  if (!isAsyncFunction(onHandler)) {
+    await createAsyncTask(onHandler)
   } else {
-    await (onClick as AsyncFunc)()
+    await (onHandler as AsyncFunc)()
   }
   loading.value = false
 }

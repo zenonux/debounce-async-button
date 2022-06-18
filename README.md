@@ -1,7 +1,8 @@
 # DebounceAsyncButton
 
-debounce async button for vue.
-
+Vue componnet for debounce async function.
+## How it works
+Multi-click button will only invoke async function once,unless the promise is not pending.
 ## Install
 
 ```bash
@@ -9,7 +10,7 @@ npm i @urcloud/debounce-async-button -S
 
 ```
 
-## Usage
+## Usage 
 
 ```html
 <template>
@@ -17,33 +18,28 @@ npm i @urcloud/debounce-async-button -S
     <DebounceAsyncButton> common button </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton @click="testAsync">
+    <DebounceAsyncButton @handler="testAsync">
       button with async function
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton @click="testAsync('arguments')">
+    <DebounceAsyncButton @handler="testAsync('arguments')">
       button with async function with arguments
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton @click="testSync">
+    <DebounceAsyncButton @handler="testSync">
       button with common function
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton @click="testSync('arguments')">
+    <DebounceAsyncButton @handler="testSync('arguments')">
       button with common function with arguments
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton disabled @click="testAsync">
+    <DebounceAsyncButton disabled @handler="testAsync">
       disabled button
-    </DebounceAsyncButton>
-  </p>
-  <p>
-    <DebounceAsyncButton @click.stop="testAsync('modify')">
-      click with event modify symbol button(Not support yet.)
     </DebounceAsyncButton>
   </p>
 </template>

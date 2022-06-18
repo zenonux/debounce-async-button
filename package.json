@@ -8,7 +8,7 @@
   "module": "./dist/index.es.js",
   "author": "换个头像心好累",
   "license": "MIT",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build"
