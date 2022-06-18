@@ -17,7 +17,7 @@ export default {
   inheritAttrs: false,
 }
 </script>
-<script setup lang="ts">
+<script setup lang="ts" name="DebounceAsyncButton">
 import { ref, useAttrs, computed } from 'vue'
 type AsyncFunc = (...args: any) => Promise<any>
 let { onClick, ...attrs } = useAttrs()
