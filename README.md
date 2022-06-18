@@ -1,6 +1,6 @@
 # DebounceAsyncButton
 
-Vue componnet for debounce async function.
+Vue3 componnet for debounce async function.
 ## How it works
 Multi-click button will only invoke async function once,unless the promise is not pending.
 ## Install
