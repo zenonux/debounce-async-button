@@ -1,37 +1,53 @@
 <template>
   <button
+    v-bind="attrs"
+    @click="onSubmit"
     :class="{
       'debounce-async-button': true,
       'debounce-async-button-loading': loading,
-      'debounce-async-button-disabled': disabled,
+      'debounce-async-button-disabled': !enabled,
     }"
-    @click.stop="onSubmit"
-    :disabled="disabled"
   >
     <slot></slot>
   </button>
 </template>
 
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+}
+</script>
 <script setup lang="ts">
-import { ref } from "vue";
-type AsyncFunc = () => Promise<any>;
-const props = withDefaults(
-  defineProps<{
-    disabled?: boolean;
-    handler?: AsyncFunc | null;
-  }>(),
-  {
-    disabled: false,
-    handler: null,
-  }
-);
-const loading = ref(false);
+import { ref, useAttrs, computed } from 'vue'
+type AsyncFunc = (...args: any) => Promise<any>
+let { onClick, ...attrs } = useAttrs()
+const loading = ref(false)
+
+const createAsyncTask = (syncTask: any) => {
+  return Promise.resolve(syncTask).then((syncTask2) => syncTask2())
+}
+
+const isAsyncFunction = (fn: any) => {
+  let fnStr = fn.toString()
+  return (
+    Object.prototype.toString.call(fn) === '[object AsyncFunction]' ||
+    fnStr.includes('return _regenerator.default.async(function')
+  )
+}
+const enabled = computed(() => {
+  return !attrs.hasOwnProperty('disabled') || !attrs.disabled
+})
+
 const onSubmit = async () => {
-  if (!props.handler || props.disabled || loading.value) {
-    return;
+  if (!onClick || !enabled || loading.value) {
+    return
   }
-  loading.value = true;
-  await (props.handler as AsyncFunc)();
-  loading.value = false;
-};
+  loading.value = true
+  if (!isAsyncFunction(onClick)) {
+    await createAsyncTask(onClick)
+  } else {
+    await (onClick as AsyncFunc)()
+  }
+  loading.value = false
+}
 </script>
