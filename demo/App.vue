@@ -19,12 +19,19 @@
   </p>
   <p>
     <DebounceAsyncButton @handler="testSync('arguments')">
-      button with common function with arguments
+      button with common function and arguments
     </DebounceAsyncButton>
   </p>
   <p>
     <DebounceAsyncButton disabled @handler="testAsync">
       disabled button
+    </DebounceAsyncButton>
+  </p>
+  <p>
+    <DebounceAsyncButton @handler="testAsync">
+      <template v-slot:default="slotProps">
+        <el-button type="primary" :loading="slotProps.loading" :disabled="slotProps.disabled">button with Element Plus</el-button>
+      </template>
     </DebounceAsyncButton>
   </p>
 </template>

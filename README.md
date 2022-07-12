@@ -1,6 +1,6 @@
 # DebounceAsyncButton
 
-Vue3 componnet for debounce async function.
+Vue3 component for debounce async function.
 ## How it works
 Multi-click button will only invoke async function once,unless the promise is not pending.
 ## Install
@@ -23,7 +23,7 @@ npm i @urcloud/debounce-async-button -S
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton @handler="testAsync('arguments')">
+    <DebounceAsyncButton @handler="testAsync('hello')">
       button with async function with arguments
     </DebounceAsyncButton>
   </p>
@@ -33,13 +33,20 @@ npm i @urcloud/debounce-async-button -S
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton @handler="testSync('arguments')">
-      button with common function with arguments
+    <DebounceAsyncButton @handler="testSync('hello')">
+      button with common function and arguments
     </DebounceAsyncButton>
   </p>
   <p>
     <DebounceAsyncButton disabled @handler="testAsync">
       disabled button
+    </DebounceAsyncButton>
+  </p>
+  <p>
+    <DebounceAsyncButton @handler="testAsync">
+      <template v-slot:default="slotProps">
+        <el-button type="primary" :loading="slotProps.loading" :disabled="slotProps.disabled">button with Element Plus</el-button>
+      </template>
     </DebounceAsyncButton>
   </p>
 </template>
@@ -64,3 +71,7 @@ const testSync = (name = '') => {
 </script>
 
 ```
+
+## Changelog
+v1.1.0
+- Support slot scope. 

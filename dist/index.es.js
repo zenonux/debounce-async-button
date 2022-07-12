@@ -71,7 +71,10 @@ const _sfc_main = /* @__PURE__ */ defineComponent(__spreadProps(__spreadValues({
           "debounce-async-button-disabled": !unref(enabled)
         }
       }), [
-        renderSlot(_ctx.$slots, "default")
+        renderSlot(_ctx.$slots, "default", {
+          loading: loading.value,
+          disabled: !unref(enabled)
+        })
       ], 16, _hoisted_1);
     };
   }

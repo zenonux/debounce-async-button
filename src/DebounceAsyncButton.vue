@@ -8,7 +8,7 @@
       'debounce-async-button-disabled': !enabled,
     }"
   >
-    <slot></slot>
+    <slot :loading="loading" :disabled="!enabled"></slot>
   </button>
 </template>
 
