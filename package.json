@@ -4,6 +4,7 @@
     "access": "public"
   },
   "keywords": [
+    "debounce-async",
     "debounce-async-button"
   ],
   "typings": "./dist/index.es.d.ts",
