@@ -71,6 +71,9 @@ const testSync = (name = '') => {
 </script>
 
 ```
+## Todo
+
+- Support vue directives. 
 
 ## Changelog
 v1.1.0
