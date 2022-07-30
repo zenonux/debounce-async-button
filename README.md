@@ -15,35 +15,32 @@ npm i @urcloud/debounce-async-button -S
 ```html
 <template>
   <p>
-    <DebounceAsyncButton> common button </DebounceAsyncButton>
-  </p>
-  <p>
-    <DebounceAsyncButton @handler="testAsync">
+    <DebounceAsyncButton @click="testAsync">
       button with async function
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton @handler="testAsync('hello')">
-      button with async function with arguments
+    <DebounceAsyncButton @click="testAsyncWithArgs('arguments')">
+      button with async function and arguments
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton @handler="testSync">
+    <DebounceAsyncButton @click="testSync">
       button with common function
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton @handler="testSync('hello')">
+    <DebounceAsyncButton @click="testSyncWithArgs('arguments')">
       button with common function and arguments
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton disabled @handler="testAsync">
+    <DebounceAsyncButton disabled @click="testAsync">
       disabled button
     </DebounceAsyncButton>
   </p>
   <p>
-   <DebounceAsyncButton v-slot="slotProps" @handler="testAsync">
+    <DebounceAsyncButton v-slot="slotProps" @click="testAsync">
       <el-button
         type="primary"
         :loading="slotProps.loading"
@@ -64,19 +61,23 @@ const sleep = (time: number) => {
   })
 }
 
-const testAsync = async (name = '') => {
+const testAsync = async (e: Event) => {
+  await sleep(3000)
+  console.log('test async ' + e)
+}
+const testAsyncWithArgs = async (name: string) => {
   await sleep(3000)
   console.log('test async ' + name)
 }
-const testSync = (name = '') => {
+const testSync = (e: Event) => {
+  console.log('test sync ' + e)
+}
+const testSyncWithArgs = (name: string) => {
   console.log('test sync ' + name)
 }
 </script>
 
 ```
-## Todo
-
-- Support vue directives. 
 
 ## Changelog
 v1.1.0
