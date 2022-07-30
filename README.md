@@ -80,5 +80,8 @@ const testSyncWithArgs = (name: string) => {
 ```
 
 ## Changelog
+v1.2.0
+- change handler to click.
+
 v1.1.0
 - Support slot scope. 
