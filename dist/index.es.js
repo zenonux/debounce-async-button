@@ -29,7 +29,7 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { defineComponent, useAttrs, ref, computed, openBlock, createElementBlock, mergeProps, unref, withModifiers, renderSlot } from "vue";
+import { defineComponent, useAttrs, ref, computed, openBlock, createElementBlock, mergeProps, withModifiers, unref, renderSlot } from "vue";
 const _hoisted_1 = ["onClick"];
 const __default__ = {
   inheritAttrs: false
@@ -37,43 +37,32 @@ const __default__ = {
 const _sfc_main = /* @__PURE__ */ defineComponent(__spreadProps(__spreadValues({}, __default__), {
   __name: "DebounceAsyncButton",
   setup(__props) {
-    let _a = useAttrs(), { onHandler } = _a, attrs = __objRest(_a, ["onHandler"]);
+    let _a = useAttrs(), { onClick } = _a, attrs = __objRest(_a, ["onClick"]);
     const loading = ref(false);
-    const createAsyncTask = async (syncTask) => {
-      const newSyncTask = await Promise.resolve(syncTask);
-      return newSyncTask();
-    };
-    const isAsyncFunction = (fn) => {
-      let fnStr = fn.toString();
-      return Object.prototype.toString.call(fn) === "[object AsyncFunction]" || fnStr.includes("return _regenerator.default.async(function");
-    };
-    const enabled = computed(() => {
-      return !attrs.hasOwnProperty("disabled") || !attrs.disabled;
+    const disabled = computed(() => {
+      return attrs.hasOwnProperty("disabled") || attrs.disabled;
     });
-    const onSubmit = async () => {
-      if (!onHandler || !enabled || loading.value) {
+    const onSubmit = async (e) => {
+      if (!onClick || disabled.value || loading.value) {
         return;
       }
       loading.value = true;
-      if (!isAsyncFunction(onHandler)) {
-        await createAsyncTask(onHandler);
-      } else {
-        await onHandler();
-      }
+      await onClick(e);
       loading.value = false;
     };
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("button", mergeProps(unref(attrs), {
-        onClick: withModifiers(onSubmit, ["stop"]),
+      return openBlock(), createElementBlock("div", mergeProps({
+        onClick: withModifiers(onSubmit, ["stop"])
+      }, unref(attrs), {
         class: {
           "debounce-async-button": true,
           "debounce-async-button-loading": loading.value,
-          "debounce-async-button-disabled": !unref(enabled)
+          "debounce-async-button-disabled": unref(disabled)
         }
       }), [
         renderSlot(_ctx.$slots, "default", {
           loading: loading.value,
-          disabled: !unref(enabled)
+          disabled: unref(disabled)
         })
       ], 16, _hoisted_1);
     };
