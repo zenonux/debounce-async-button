@@ -1,6 +1,6 @@
 <template>
   <div
-    @click.stop="onSubmit"
+    @click="onSubmit"
     v-bind="attrs"
     :class="{
       'debounce-async-button': true,

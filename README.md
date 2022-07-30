@@ -80,7 +80,7 @@ const testSyncWithArgs = (name: string) => {
 ```
 
 ## Changelog
-v1.2.0
+v1.2.1
 - change handler to click.
 
 v1.1.0
