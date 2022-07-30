@@ -1,22 +1,8 @@
 <template>
-  <button
-    v-bind="attrs"
-    @click.stop="onSubmit"
-    :class="{
-      'debounce-async-button': true,
-      'debounce-async-button-loading': loading,
-      'debounce-async-button-disabled': !enabled,
-    }"
-  >
+  <div class="debounce-async-button" @click.stop="onSubmit">
     <slot :loading="loading" :disabled="!enabled"></slot>
-  </button>
+  </div>
 </template>
-
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
-</script>
 <script setup lang="ts" name="DebounceAsyncButton">
 import { ref, useAttrs, computed } from 'vue'
 type AsyncFunc = (...args: any) => Promise<any>

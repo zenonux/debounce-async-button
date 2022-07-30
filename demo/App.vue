@@ -28,10 +28,13 @@
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton @handler="testAsync">
-      <template v-slot:default="slotProps">
-        <el-button type="primary" :loading="slotProps.loading" :disabled="slotProps.disabled">button with Element Plus</el-button>
-      </template>
+    <DebounceAsyncButton v-slot="slotProps" @handler="testAsync">
+      <el-button
+        type="primary"
+        :loading="slotProps.loading"
+        :disabled="slotProps.disabled"
+        >button with Element Plus</el-button
+      >
     </DebounceAsyncButton>
   </p>
 </template>
