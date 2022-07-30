@@ -1,10 +1,5 @@
 <template>
   <p>
-    <DebounceAsyncButton @click="testAsync">
-      button with async function
-    </DebounceAsyncButton>
-  </p>
-  <p>
     <DebounceAsyncButton @click="testAsyncWithArgs('arguments')">
       button with async function and arguments
     </DebounceAsyncButton>
@@ -45,6 +40,7 @@ const sleep = (time: number) => {
     }, time)
   })
 }
+
 const testAsync = async (e: Event) => {
   await sleep(3000)
   console.log('test async ' + e)
