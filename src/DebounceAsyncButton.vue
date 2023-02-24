@@ -8,7 +8,7 @@ export default {
   inheritAttrs: false,
 };
 </script>
-<script setup lang="ts" name="DebounceAsyncButton">
+<script setup lang="ts">
 import { ref, useAttrs, computed } from "vue";
 let { onClick, ...attrs } = useAttrs();
 const loading = ref(false);

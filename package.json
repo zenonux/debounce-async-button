@@ -12,7 +12,7 @@
   "module": "./dist/index.es.js",
   "author": "换个头像心好累",
   "license": "MIT",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build"
