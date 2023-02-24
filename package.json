@@ -12,7 +12,7 @@
   "module": "./dist/index.es.js",
   "author": "换个头像心好累",
   "license": "MIT",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build"
@@ -27,12 +27,11 @@
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
-    "@vitejs/plugin-vue": "^2.3.3",
+    "@vitejs/plugin-vue": "^4.0.0",
     "element-plus": "^2.2.9",
-    "typescript": "^4.5.4",
-    "vite": "^2.9.9",
-    "vite-dts": "^1.0.4",
+    "typescript": "~4.7.4",
+    "vite": "^4.0.0",
     "vue": "^3.2.25",
-    "vue-tsc": "^0.34.7"
+    "vue-tsc": "^1.0.12"
   }
 }

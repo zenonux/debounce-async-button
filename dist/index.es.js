@@ -1,68 +1,27 @@
-var __defProp = Object.defineProperty;
-var __defProps = Object.defineProperties;
-var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
-  for (var prop in b || (b = {}))
-    if (__hasOwnProp.call(b, prop))
-      __defNormalProp(a, prop, b[prop]);
-  if (__getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
-    }
-  return a;
-};
-var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
-var __objRest = (source, exclude) => {
-  var target = {};
-  for (var prop in source)
-    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
-      target[prop] = source[prop];
-  if (source != null && __getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(source)) {
-      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
-        target[prop] = source[prop];
-    }
-  return target;
-};
-import { defineComponent, useAttrs, ref, computed, openBlock, createElementBlock, mergeProps, withModifiers, unref, renderSlot } from "vue";
-const _hoisted_1 = ["onClick"];
-const __default__ = {
-  inheritAttrs: false
-};
-const _sfc_main = /* @__PURE__ */ defineComponent(__spreadProps(__spreadValues({}, __default__), {
+import { defineComponent as i, useAttrs as u, ref as d, computed as f, openBlock as _, createElementBlock as p, mergeProps as m, withModifiers as b, unref as r, renderSlot as v } from "vue";
+const h = ["onClick"], k = {
+  inheritAttrs: !1
+}, o = /* @__PURE__ */ i({
+  ...k,
   __name: "DebounceAsyncButton",
-  setup(__props) {
-    let _a = useAttrs(), { onClick } = _a, attrs = __objRest(_a, ["onClick"]);
-    const loading = ref(false);
-    const disabled = computed(() => {
-      return attrs.hasOwnProperty("disabled") || attrs.disabled;
-    });
-    const onSubmit = async (e) => {
-      if (!onClick || disabled.value || loading.value) {
-        return;
-      }
-      loading.value = true;
-      await onClick(e);
-      loading.value = false;
+  setup(s) {
+    let { onClick: a, ...t } = u();
+    const e = d(!1), l = f(() => t.hasOwnProperty("disabled") || t.disabled), c = async (n) => {
+      !a || l.value || e.value || (e.value = !0, await a(n), e.value = !1);
     };
-    return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", mergeProps({
-        onClick: withModifiers(onSubmit, ["stop"])
-      }, unref(attrs), { class: "debounce-async-button" }), [
-        renderSlot(_ctx.$slots, "default", {
-          loading: loading.value,
-          disabled: unref(disabled)
-        })
-      ], 16, _hoisted_1);
-    };
+    return (n, y) => (_(), p("div", m({
+      onClick: b(c, ["stop"])
+    }, r(t), { class: "debounce-async-button" }), [
+      v(n.$slots, "default", {
+        loading: e.value,
+        disabled: r(l)
+      })
+    ], 16, h));
   }
-}));
-_sfc_main.install = function(app) {
-  app.component(_sfc_main.name, _sfc_main);
+});
+o.install = function(s) {
+  s.component(o.name, o);
 };
-export { _sfc_main as default };
+export {
+  o as default
+};
