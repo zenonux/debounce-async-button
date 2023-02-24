@@ -1,27 +1,27 @@
-import { defineComponent as i, useAttrs as u, ref as d, computed as f, openBlock as _, createElementBlock as p, mergeProps as m, withModifiers as b, unref as r, renderSlot as v } from "vue";
+import { defineComponent as u, useAttrs as i, ref as d, computed as f, openBlock as _, createElementBlock as p, mergeProps as m, withModifiers as b, unref as l, renderSlot as v } from "vue";
 const h = ["onClick"], k = {
   inheritAttrs: !1
-}, o = /* @__PURE__ */ i({
+}, r = /* @__PURE__ */ u({
   ...k,
   __name: "DebounceAsyncButton",
-  setup(s) {
-    let { onClick: a, ...t } = u();
-    const e = d(!1), l = f(() => t.hasOwnProperty("disabled") || t.disabled), c = async (n) => {
-      !a || l.value || e.value || (e.value = !0, await a(n), e.value = !1);
+  setup(o) {
+    let { onClick: s, ...t } = i();
+    const e = d(!1), a = f(() => t.hasOwnProperty("disabled") || t.disabled), c = async (n) => {
+      !s || a.value || e.value || (e.value = !0, await s(n), e.value = !1);
     };
     return (n, y) => (_(), p("div", m({
       onClick: b(c, ["stop"])
-    }, r(t), { class: "debounce-async-button" }), [
+    }, l(t), { class: "debounce-async-button" }), [
       v(n.$slots, "default", {
         loading: e.value,
-        disabled: r(l)
+        disabled: l(a)
       })
     ], 16, h));
   }
 });
-o.install = function(s) {
-  s.component(o.name, o);
+r.install = function(o) {
+  o.component("DebounceAsyncButton", r);
 };
 export {
-  o as default
+  r as default
 };
