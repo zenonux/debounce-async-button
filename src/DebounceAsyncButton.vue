@@ -4,24 +4,32 @@
   </div>
 </template>
 <script lang="ts">
-export default {
+import { ref, useAttrs, computed, defineComponent } from "vue";
+export default defineComponent({
+  name: "DebounceAsyncButton",
   inheritAttrs: false,
-};
-</script>
-<script setup lang="ts">
-import { ref, useAttrs, computed } from "vue";
-let { onClick, ...attrs } = useAttrs();
-const loading = ref(false);
-const disabled = computed(() => {
-  return attrs.hasOwnProperty("disabled") || attrs.disabled;
-});
+  setup() {
+    let { onClick, ...attrs } = useAttrs();
+    const loading = ref(false);
+    const disabled = computed(() => {
+      return attrs.hasOwnProperty("disabled") || attrs.disabled;
+    });
 
-const onSubmit = async (e: Event) => {
-  if (!onClick || disabled.value || loading.value) {
-    return;
-  }
-  loading.value = true;
-  await (onClick as any)(e);
-  loading.value = false;
-};
+    const onSubmit = async (e: Event) => {
+      if (!onClick || disabled.value || loading.value) {
+        return;
+      }
+      loading.value = true;
+      await (onClick as any)(e);
+      loading.value = false;
+    };
+
+    return {
+      loading,
+      disabled,
+      attrs,
+      onSubmit,
+    };
+  },
+});
 </script>
