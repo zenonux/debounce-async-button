@@ -29,7 +29,8 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { defineComponent, useAttrs, ref, computed, openBlock, createElementBlock, mergeProps, unref, renderSlot } from "vue";
+import { defineComponent, useAttrs, ref, computed, openBlock, createElementBlock, mergeProps, withModifiers, unref, renderSlot } from "vue";
+const _hoisted_1 = ["onClick"];
 const __default__ = {
   inheritAttrs: false
 };
@@ -50,18 +51,14 @@ const _sfc_main = /* @__PURE__ */ defineComponent(__spreadProps(__spreadValues({
       loading.value = false;
     };
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", mergeProps({ onClick: onSubmit }, unref(attrs), {
-        class: {
-          "debounce-async-button": true,
-          "debounce-async-button-loading": loading.value,
-          "debounce-async-button-disabled": unref(disabled)
-        }
-      }), [
+      return openBlock(), createElementBlock("div", mergeProps({
+        onClick: withModifiers(onSubmit, ["stop"])
+      }, unref(attrs), { class: "debounce-async-button" }), [
         renderSlot(_ctx.$slots, "default", {
           loading: loading.value,
           disabled: unref(disabled)
         })
-      ], 16);
+      ], 16, _hoisted_1);
     };
   }
 }));
