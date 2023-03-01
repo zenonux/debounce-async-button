@@ -1,35 +1,28 @@
-<template>
-  <div @click.stop="onSubmit" v-bind="attrs" class="debounce-async-button">
-    <slot :loading="loading" :disabled="disabled"></slot>
-  </div>
-</template>
 <script lang="ts">
-import { ref, useAttrs, computed, defineComponent } from "vue";
+import { useSlots, ref, defineComponent } from "vue";
 export default defineComponent({
-  name: "DebounceAsyncButton",
-  inheritAttrs: false,
-  setup() {
-    let { onClick, ...attrs } = useAttrs();
+  name: "DebounceAsyncAbstractButton",
+  abstract: true,
+  render() {
+    const slots = useSlots();
+    let vnode = slots.default ? slots.default()[0] : null;
+    if (!vnode) {
+      return;
+    }
+    let props = vnode.props;
+    let clickHandler = props?.onClick;
     const loading = ref(false);
-    const disabled = computed(() => {
-      return attrs.hasOwnProperty("disabled") || attrs.disabled;
-    });
-
-    const onSubmit = async (e: Event) => {
-      if (!onClick || disabled.value || loading.value) {
-        return;
-      }
-      loading.value = true;
-      await (onClick as any)(e);
-      loading.value = false;
-    };
-
-    return {
-      loading,
-      disabled,
-      attrs,
-      onSubmit,
-    };
+    if (props && props.onClick) {
+      props.onClick = async (e: Event) => {
+        if (loading.value) {
+          return;
+        }
+        loading.value = true;
+        await clickHandler(e);
+        loading.value = false;
+      };
+    }
+    return vnode;
   },
 });
 </script>
