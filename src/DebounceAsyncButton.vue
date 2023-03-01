@@ -1,7 +1,7 @@
 <script lang="ts">
 import { useSlots, ref, defineComponent } from "vue";
 export default defineComponent({
-  name: "DebounceAsyncAbstractButton",
+  name: "DebounceAsyncButton",
   abstract: true,
   render() {
     const slots = useSlots();

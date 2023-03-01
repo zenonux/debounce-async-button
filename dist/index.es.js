@@ -1,6 +1,6 @@
 import { defineComponent as s, useSlots as c, ref as u } from "vue";
 const a = s({
-  name: "DebounceAsyncAbstractButton",
+  name: "DebounceAsyncButton",
   abstract: !0,
   render() {
     const n = c();
