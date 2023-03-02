@@ -52,17 +52,17 @@ const sleep = (time: number) => {
 
 const testAsync = async (e: Event) => {
   await sleep(3000)
-  console.log('test async ' + e)
+  console.log('test async ' , e)
 }
 const testAsyncWithArgs = async (name: string) => {
   await sleep(3000)
-  console.log('test async ' + name)
+  console.log('test async ' ,name)
 }
 const testSync = (e: Event) => {
-  console.log('test sync ' + e)
+  console.log('test sync ' ,e)
 }
 const testSyncWithArgs = (name: string) => {
-  console.log('test sync ' + name)
+  console.log('test sync ' , name)
 }
 </script>
 

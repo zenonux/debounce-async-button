@@ -3,7 +3,7 @@ import { useSlots, ref, defineComponent } from "vue";
 export default defineComponent({
   name: "DebounceAsyncButton",
   abstract: true,
-  render() {
+  setup() {
     const slots = useSlots();
     let vnode = slots.default ? slots.default()[0] : null;
     if (!vnode) {
@@ -22,7 +22,7 @@ export default defineComponent({
         loading.value = false;
       };
     }
-    return vnode;
+    return () =>  vnode;
   },
 });
 </script>
