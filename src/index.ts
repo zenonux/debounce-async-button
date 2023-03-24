@@ -1,8 +1,3 @@
-import type { App } from "vue";
+import DebounceAsyncAbstractButton from "./DebounceAsyncAbstractButton.vue";
 import DebounceAsyncButton from "./DebounceAsyncButton.vue";
-
-export default {
-  install(app: App) {
-    app.component(DebounceAsyncButton.name, DebounceAsyncButton);
-  },
-};
+export { DebounceAsyncButton, DebounceAsyncAbstractButton };

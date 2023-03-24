@@ -1,33 +1,37 @@
 <template>
   <p>
-    <DebounceAsyncButton>
-      <button @click="testAsyncWithArgs('arguments')">
-        button with async function and arguments
+    <DebounceAsyncButton v-slot="slotProps" @click="() => testAsync('click')">
+      <button :loading="slotProps.loading">button</button>
+    </DebounceAsyncButton>
+  </p>
+  <p>
+    <DebounceAsyncButton
+      v-slot="slotProps"
+      disabled
+      @click="() => testAsync('click')"
+    >
+      <button :loading="slotProps.loading" :disabled="slotProps.disabled">
+        button disabled
       </button>
     </DebounceAsyncButton>
   </p>
   <p>
-    <DebounceAsyncButton>
-      <button @click="testSync">button with common function</button>
-    </DebounceAsyncButton>
+    <DebounceAsyncAbstractButton>
+      <button @click="() => testAsync('click')">button</button>
+    </DebounceAsyncAbstractButton>
   </p>
   <p>
-    <DebounceAsyncButton>
-      <button @click="testSyncWithArgs('arguments')">
-        button with common function and arguments
+    <DebounceAsyncAbstractButton>
+      <button disabled @click="() => testAsync('click')">
+        button disabled
       </button>
-    </DebounceAsyncButton>
-  </p>
-  <p>
-    <DebounceAsyncButton>
-      <button disabled @click="testAsync">disabled button</button>
-    </DebounceAsyncButton>
+    </DebounceAsyncAbstractButton>
   </p>
 </template>
 <script setup lang="ts">
 import DebounceAsyncButton from "../src/DebounceAsyncButton.vue";
-
-const sleep = (time: number) => {
+import DebounceAsyncAbstractButton from "../src/DebounceAsyncAbstractButton.vue";
+const delay = (time: number) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(true);
@@ -35,18 +39,8 @@ const sleep = (time: number) => {
   });
 };
 
-const testAsync = async (e: Event) => {
-  await sleep(3000);
-  console.log("test async ", e);
-};
-const testAsyncWithArgs = async (name: string) => {
-  await sleep(3000);
-  console.log("test async " , name);
-};
-const testSync = (e: Event) => {
-  console.log("test sync " , e);
-};
-const testSyncWithArgs = (name: string) => {
-  console.log("test sync " , name);
+const testAsync = async (args: string) => {
+  await delay(3000);
+  console.log("test async ", args);
 };
 </script>

@@ -1,5 +1,3 @@
-import type { App } from "vue";
-declare const _default: {
-    install(app: App): void;
-};
-export default _default;
+import DebounceAsyncAbstractButton from "./DebounceAsyncAbstractButton.vue";
+import DebounceAsyncButton from "./DebounceAsyncButton.vue";
+export { DebounceAsyncButton, DebounceAsyncAbstractButton };
